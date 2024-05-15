@@ -1,0 +1,23 @@
+{
+    "contactform": {
+        "first_name": "//form//div//input[@id='first_name']",
+        "last_name": "#last_name",
+        "email": "#email",
+        "company": "#company",
+        "jobtitle": "#title",
+        "country":"#country",
+        "chk_box_privacy_statement":"#Privacy_Statement_Consent__c",
+        "chk_box_Email_Opt_in":"#Email_Opt_in__c",
+        "comments_section":"//textarea[@placeholder='How can we help you?']",
+        "compass_section":"//textarea[@placeholder='My question about COMPASS:']",
+        "clk_captcha_chkbox":".recaptcha-checkbox-border",
+        "success_message":"#contact-us h2",
+        "Singapore_Compass_calculaor_success_message": "(//div[@id='__next']//p)[1]",
+        "lnk_privacy_policy_link":"//a[text()='privacy policy.']",
+        "lnk_terms_and_conditions":"//a[text()='terms and conditions of use,']",
+        "lnk_vialto_privacy":"//a[text()='Vialto’s privacy']"
+    },
+    "cookie": {
+        "btn_cookie": "//button[@class='ot-floating-button__open']"       
+     }
+}

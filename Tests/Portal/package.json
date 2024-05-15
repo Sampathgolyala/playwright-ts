@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "test": "npx playwright test",
+    "lint": "eslint . --ext js,ts",
+    "ctest": "cucumber-js",
+    "allure": "allure serve reports/allure-results",
+    "test:parallel": "npx cucumber-js --parallel=2"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.22.2",
+    "playwright-lighthouse": "^4.0.0",
+    "vita-playwright": "^1.5.1-Beta-7-report-update-5"
+  },
+  "name": "portal",
+  "version": "1.0.0",
+  "main": "cucumber.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^20.11.19"
+  }
+}

@@ -1,0 +1,94 @@
+name: 'AutomationTest_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)'
+# variables:
+#   vmImage: $(vmImage)
+stages:
+  - stage: STAGE
+    condition: eq(variables['app_env'],'stage')
+    variables:
+      - name: targetEnvironment
+        value: stage 
+      - name: browserName
+        value: $(browser)
+      - name: tagName
+        value: $(tags)
+      - name: retryCount
+        value: $(retries) 
+      - name: snapshotupdate
+        value:  $(snapshots)
+      - name: browserhead
+        value: $(headless)
+      - name: linuxpool
+        value: $(linuxcommand)
+      - name: DeviceType
+        value: $(Device_Type)  
+      - name: DirectoryName
+        value: $(foldername)     
+    jobs:
+      - job: WebPortal
+        pool:
+          vmImage: $(vmImage)
+        condition: succeeded()
+        timeoutInMinutes: 1800
+        steps:
+          - checkout: none
+          - template: portal.yml
+  - stage: TEST
+    condition: eq(variables['app_env'],'test')
+    variables:
+      - name: targetEnvironment
+        value: test
+      - name: browserName
+        value: $(browser)
+      - name: tagName
+        value: $(tags)
+      - name: retryCount
+        value: $(retries)
+      - name: snapshotupdate
+        value:  $(snapshots)
+      - name: browserhead
+        value: $(headless)
+      - name: linuxpool
+        value: $(linuxcommand)
+      - name: DeviceType
+        value: $(Device_Type)
+      - name: DirectoryName
+        value: $(foldername)
+    jobs:
+      - job: WebPortal
+        pool:
+          vmImage: $(vmImage)
+        condition: succeeded()
+        timeoutInMinutes: 1800
+        steps:
+          - checkout: none
+          - template: portal.yml
+  - stage: prod
+    condition: eq(variables['app_env'],'prod')
+    variables:
+      - name: targetEnvironment
+        value: prod 
+      - name: browserName
+        value: $(browser)
+      - name: tagName
+        value: $(tags)
+      - name: retryCount
+        value: $(retries) 
+      - name: snapshotupdate
+        value:  $(snapshots)
+      - name: browserhead
+        value: $(headless)
+      - name: linuxpool
+        value: $(linuxcommand)
+      - name: DeviceType
+        value: $(Device_Type)  
+      - name: DirectoryName
+        value: $(foldername)     
+    jobs:
+      - job: WebPortal
+        pool:
+          vmImage: $(vmImage)
+        condition: succeeded()
+        timeoutInMinutes: 1800
+        steps:
+          - checkout: none
+          - template: portal.yml

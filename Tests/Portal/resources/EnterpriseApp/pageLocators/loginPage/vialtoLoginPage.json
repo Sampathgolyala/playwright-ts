@@ -1,0 +1,44 @@
+{
+    "headers": {
+        "SolutionsHeader": "//span[text()='Solutions']",
+        "TechnologyHeader":"//span[text()='TechnologyHeader']",
+        "NewsandInsightsHeader":"//span[text()='News and Insights']",
+        "CareersHeader":"//span[text()='Careers']",
+        "AboutUsHeader":"//span[text()='About Us']"
+
+    },
+    "sublinks": {
+        "sublinkName": "//span[text()=`${name}`]"
+        
+    },
+    "inputBoxes": {
+        "email": "#loginForm #ReturningUserEmail",
+        "password": "#loginForm #Password"
+    },
+    "buttons": {
+        "contactusBtn": "//a[text()='name']",
+        "acceptAllCookies": "#onetrust-accept-btn-handler",
+        "rejectAllCookies": "#onetrust-reject-all-handler"
+    },
+    "paragraph": {
+        "Vialtosummary": "(//div[@id='__next']//h1)[1]",
+        "heroparagraph":"(//p)[1]"
+    },
+    "mainPage": {
+        "loginHelpText": "#loginForm h4"
+    },
+    "errorMessage": {
+        "summary": ".validation-summary-errors",
+        "field": ".field-validation-error"
+    },
+    "troubleLogginDialog": {
+        "dialogLink": "#troubleLoggingInGuide",
+        "dialog": ".ui-dialog",
+        "dialogHeader": ".ui-dialog #ui-id-1",
+        "dialogbodyHeader": ".ui-dialog #optionsId",
+        "dialogBodyText": ".ui-dialog #ddlOptionsId li",
+        "okButton": ".ui-dialog-buttonset #okBtn"
+    },
+    "loginHelpText": "#troubleLoggingInGuide",
+    "vialtoLogo":   "//span[@aria-label='Vialto Partners Logo' and @role='img']"   
+}

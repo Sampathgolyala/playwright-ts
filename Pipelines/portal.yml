@@ -1,0 +1,77 @@
+parameters:
+  - name: TestSuits
+    type: object
+    default:
+      - name: UI
+        path: ./src/EnterpriseApp/tests/
+      - name: API
+        path: ./src/EnterpriseApp/tests/EnterpriseAPP_API/*
+steps:
+  - checkout: self
+    clean: true
+    fetchTags: false
+  - task: NodeTool@0
+    displayName: Use Node 16.x
+    inputs:
+      versionSpec: 16.x
+      checkLatest: true   
+  - task: Npm@1
+    displayName: npm install
+    inputs:
+      workingDir: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal
+      verbose:  false   
+  - script: npx playwright install
+    displayName: Playwright Installation
+    workingDirectory: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal
+  - '${{ each testSuit in parameters.TestSuits}}':
+      - script: $(linuxcommand) npx playwright test --retries=$(retryCount) ${{ testSuit.path }}$(DirectoryName) $(tags) $(snapshots)
+        workingDirectory: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal
+        displayName: '${{ testSuit.name }}-EnterpriseAppTests'
+        condition: eq(variables['${{ testSuit.name }}-EnterpriseAppTests'], true)
+        env:
+          env: $(targetEnvironment)
+          NODE_ENV: $(targetEnvironment)
+          customReportName: '${{testSuit.name}}-EnterpriseAppTests'
+          browser: $(browserName)
+          browserheadless: $(browserhead)  
+          Device_Type: $(DeviceType)    
+  - task: CmdLine@2
+    displayName: Generate the allure report
+    condition: succeededOrFailed()
+    inputs:
+      script: npx allure generate --clean allure-results
+      workingDirectory: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal/testresults/*-junit-xml.xml
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Test Results
+    condition: succeededOrFailed()
+    inputs:
+      path: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal/testresults
+      artifactName: testresults   
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Allure Results
+    condition: succeededOrFailed()
+    inputs:
+      path: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal/allure-results
+      artifactName: my-allure-results
+  - task: PublishPipelineArtifact@1
+    displayName: Publish Allure Reports
+    condition: succeededOrFailed()
+    inputs:
+      path: $(System.DefaultWorkingDirectory)/test-automation-enterprise-applications/Tests/Portal/allure-report
+      artifactName: allure-report
+  - task: DeleteFiles@1
+    displayName: 'Clean Up'
+    condition: succeededOrFailed()
+    inputs:
+      contents: |
+        **/node_modules
+        **/testresults
+        **/allure-results
+        **/allure-report
+        **/Downloads
+      removeDotFiles: true

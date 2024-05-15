@@ -1,0 +1,32 @@
+{
+    "Austria" : {
+      "dev_austria_url":  "https://hhl3okh4zj81j9nypdwjclcp2.js.wpenginepowered.com/",
+      "stage_austria_url":  "https://hax8pnwez6iyyy2pcesjx1mls.js.wpenginepowered.com/",
+      "austria_prod_url": "https://austria.vialtopartners.com/"
+      },
+    "Amazon"  : {
+      "dev_amazon_url": "https://h58m65hlw9w30ykel0js3j475.js.wpenginepowered.com/",
+      "stage_amazon_url": "https://hzcofy1ogzbxu4hqjth0jlvqn.js.wpenginepowered.com/",
+      "amazon_prod_url":  "https://globalmobilityservices.vialto.com/"
+  
+    },
+    "France"  : {
+      "dev_france_url": "https://hmq1p5ijs20lh31gkaxie38e3.js.wpenginepowered.com/",
+      "stage_france_url": "https://hmq1p5ijs20lh31gkaxie38e3.js.wpenginepowered.com/"
+    },
+    "Singapore" :  {
+      "dev_singapore_url":  "https://vrp-dev.sbx.world/sg_analytics",
+      "stage_singapore_url":  "https://vrp-uat.sbx.world/sg_analytics",
+      "prod_singapore_url": "https://globalmobility.vialtopartners.com/sg_analytics"
+    },
+    "China" :  {
+      "dev_china_url":  "https://vrp-dev.sbx.world/china",
+      "stage_china_url":  "https://vrp-uat.sbx.world/china",
+      "prod_china_url": "https://globalmobility.vialtopartners.com/china"
+    },
+    "corp"  : {
+      "url_Test": "https://vialto10dev.sbx.world/",
+      "url_Stage":  "https://vialto10staging.sbx.world/",
+      "url_prod": "https://vialtopartners.com/"
+    }
+  }
